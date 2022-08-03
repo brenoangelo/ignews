@@ -1,16 +1,19 @@
-import { AppProps } from 'next/app'
-import { Header } from '../components/Header'
-import { SessionProvider as NextAuthProvider } from 'next-auth/react'
+import { AppProps } from 'next/app';
+import { Header } from '../components/Header';
+import { SessionProvider as NextAuthProvider } from 'next-auth/react';
 
-import '../styles/global.scss'
+import '../styles/global.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <NextAuthProvider session={pageProps.session}>
+    <NextAuthProvider
+      session={pageProps.session}
+      basePath={process.env.NEXTAUTH_URL}
+    >
       <Header />
       <Component {...pageProps} />
     </NextAuthProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
